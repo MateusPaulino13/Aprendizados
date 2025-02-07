@@ -37,6 +37,14 @@ namespace Heranca
                 acc5.UpdateBalance();
                 Console.WriteLine("Update Balance");
             }
+
+            Account conta = new Account(1003, "Joao", 500.0);
+            conta.WithDraw(10.0);
+            Console.WriteLine(conta.Balance);
+
+            SavingAccount poupanca = new SavingAccount(1004, "Maria", 500.0, 0.01);
+            poupanca.WithDraw(10.0);
+            Console.WriteLine(poupanca.Balance);
         }
     }
 }
