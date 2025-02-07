@@ -12,7 +12,8 @@ namespace Heranca.Entities
         public string Holder { get; private set; }
         public double Balance { get; protected set; }
 
-        public Account() { }
+        public Account()
+        { }
 
         public Account(int number, string holder, double balance)
         {
@@ -25,6 +26,7 @@ namespace Heranca.Entities
         {
             Balance -= amount;
         }
+
         public void Deposit(double amount)
         {
             Balance += amount;
