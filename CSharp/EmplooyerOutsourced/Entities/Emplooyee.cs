@@ -10,7 +10,7 @@ namespace EmplooyerOutsourced.Entities
     {
         public string Name { get; private set; }
         public int Hours { get; private set; }
-        public double valuePerHour { get; private set; }
+        public double ValuePerHour { get; private set; }
 
         public Emplooyee()
         {
@@ -20,12 +20,12 @@ namespace EmplooyerOutsourced.Entities
         {
             Name = name;
             Hours = hours;
-            this.valuePerHour = valuePerHour;
+            ValuePerHour = valuePerHour;
         }
 
         public virtual double Payment()
         {
-            return valuePerHour * Hours;
+            return ValuePerHour * Hours;
         }
     }
 }
