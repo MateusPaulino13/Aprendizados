@@ -32,6 +32,12 @@ namespace ExecoesPersonalizadas.Entites
             return (int)duration.TotalDays;
         }
 
+        public void UpdateDates(DateTime checkin, DateTime checkout)
+        {
+            CheckIn = checkin;
+            CheckOut = checkout;
+        }
+
         public override string ToString()
         {
             return $"Room {RoomNumber}, check-in: {CheckIn.ToString("dd/MM/yyyy")}, check-out: {CheckOut.ToString("dd/MM/yyyy")}, {Duration()} nights";
