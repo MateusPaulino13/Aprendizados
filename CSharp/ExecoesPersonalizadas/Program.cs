@@ -1,5 +1,6 @@
 ﻿using System;
 using ExecoesPersonalizadas.Entites;
+using ExecoesPersonalizadas.Entites.Exceptions;
 
 namespace ExecoesPersonalizadas
 {
@@ -7,44 +8,44 @@ namespace ExecoesPersonalizadas
     {
         private static void Main(string[] args)
         {
-            Console.Write("Room number: ");
-            int roomNumber = int.Parse(Console.ReadLine());
-
-            Console.Write("Check-in date (dd/MM/yyyy): ");
-            DateTime checkIn = DateTime.Parse(Console.ReadLine());
-
-            Console.Write("Check-out date (dd/MM/yyyy): ");
-            DateTime checkOut = DateTime.Parse(Console.ReadLine());
-
-            if (checkOut <= checkIn)
+            try
             {
-                Console.WriteLine("Error in reservation: CheckOut date must be after chekIn date");
-            }
-            else
-            {
+                Console.Write("Room number: ");
+                int roomNumber = int.Parse(Console.ReadLine());
+
+                Console.Write("Check-in date (dd/MM/yyyy): ");
+                DateTime checkIn = DateTime.Parse(Console.ReadLine());
+
+                Console.Write("Check-out date (dd/MM/yyyy): ");
+                DateTime checkOut = DateTime.Parse(Console.ReadLine());
+
                 Reservation reservation = new Reservation(roomNumber, checkIn, checkOut);
                 Console.WriteLine($"Reservation: {reservation}");
 
                 Console.WriteLine();
 
                 Console.WriteLine("Enter data to update the reservation:");
+
                 Console.Write("Check-in date (dd/MM/yyyy): ");
                 checkIn = DateTime.Parse(Console.ReadLine());
 
                 Console.Write("Check-out date (dd/MM/yyyy): ");
                 checkOut = DateTime.Parse(Console.ReadLine());
 
-                string error = reservation.UpdateDates(checkIn, checkOut);
-
-                if (error != null)
-                {
-                    Console.WriteLine($"Error in reservation: {error}");
-                }
-                else
-                {
-                    reservation.UpdateDates(checkIn, checkOut);
-                    Console.WriteLine($"Reservation: {reservation}");
-                }
+                reservation.UpdateDates(checkIn, checkOut);
+                Console.WriteLine($"Reservation: {reservation}");
+            }
+            catch(DomainException e)
+            {
+                Console.WriteLine($"Error in reservation : {e.Message}");
+            }
+            catch(FormatException e)
+            {
+                Console.WriteLine($"Format erro: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Unexpected error : {e}");
             }
         }
     }
