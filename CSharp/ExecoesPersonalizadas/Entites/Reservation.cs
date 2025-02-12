@@ -32,15 +32,29 @@ namespace ExecoesPersonalizadas.Entites
             return (int)duration.TotalDays;
         }
 
-        public void UpdateDates(DateTime checkin, DateTime checkout)
+        public string UpdateDates(DateTime checkIn, DateTime checkOut)
         {
-            CheckIn = checkin;
-            CheckOut = checkout;
+            DateTime now = DateTime.Now;
+
+            if (checkIn < now || checkOut < now)
+            {
+                return "Error in reservation: Reservation dates for update must be future dates";
+            }
+
+            if (checkOut <= checkIn)
+            {
+                return "Error in reservation: CheckOut date must be after chekIn date";
+            }
+
+            CheckIn = CheckIn;
+            CheckOut = checkOut;
+
+            return null;
         }
 
         public override string ToString()
         {
             return $"Room {RoomNumber}, check-in: {CheckIn.ToString("dd/MM/yyyy")}, check-out: {CheckOut.ToString("dd/MM/yyyy")}, {Duration()} nights";
-        }   
+        }
     }
 }
