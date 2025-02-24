@@ -1,26 +1,35 @@
 ﻿using System;
+using System.IO;
 
 namespace TrabalhandoComArquivos
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            string sourcePath = @"C:\Users\mateus.paulino\Downloads\msg.txt";
-            string targetPath = @"C:\Users\mateus.paulino\Downloads\msg2.txt";
+            string path = @"C:\Users\mateus.paulino\Downloads\msg.txt";
+            StreamReader sr = null;
 
             try
             {
-                FileInfo fileInfo = new FileInfo(sourcePath);
-                fileInfo.CopyTo(targetPath);
+                sr = File.OpenText(path);
+
+                while (!sr.EndOfStream)
+                {
+                    string line = sr.ReadLine();
+                    Console.WriteLine(line);
+                }
             }
             catch (IOException e)
             {
-                Console.WriteLine("An error occurred");
-                Console.WriteLine(e.Message);
-            } finally
+                Console.WriteLine($"Error : {e.Message}");
+            }
+            finally
             {
-
+                if (sr != null)
+                {
+                    sr.Close();
+                }
             }
         }
     }
