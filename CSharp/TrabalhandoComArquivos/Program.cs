@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace TrabalhandoComArquivos
 {
@@ -7,23 +8,24 @@ namespace TrabalhandoComArquivos
     {
         static void Main(string[] args)
         {
-            string path = @"C:\Users\mateus.paulino\OneDrive - Adventistas\Documentos\Aprendizados\text.txt";
+            string sourcepath = @"C:\Users\mateus.paulino\OneDrive - Adventistas\Documentos\Aprendizados\text.txt";
+            string targetPath = @"C:\Users\mateus.paulino\OneDrive - Adventistas\Documentos\Aprendizados\text2.txt";
 
             try
             {
-                // tudo dentro desse bloco using sera feito e ao terminar a execução de todas as ações, ele irá fechar o arquivo
-                using (StreamReader sr = File.OpenText(path))
+                string[] lines = File.ReadAllLines(sourcepath);
+
+                using (StreamWriter sw = File.AppendText(targetPath))
                 {
-                    while (!sr.EndOfStream)
+                    foreach (string line in lines)
                     {
-                        string lines = sr.ReadLine();
-                        Console.WriteLine(lines);
+                        sw.WriteLine(line.ToUpper());
                     }
                 }
             }
             catch (IOException e)
             {
-                Console.WriteLine("An error occurred");
+                Console.WriteLine("An error found");
                 Console.WriteLine(e.Message);
             }
         }
