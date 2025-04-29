@@ -2,12 +2,12 @@
 
 namespace Gererics;
 
-public class PrintService
+public class PrintService<T>
 {
-    private int[] _values = new int[10];
+    private T[] _values = new T[10];
     private int _count = 0;
 
-    public void AddValue(int value)
+    public void AddValue(T value)
     {
         if(_count == 10)    
             throw new InvalidOperationException("Cannot add more than 10 values.");
@@ -16,7 +16,7 @@ public class PrintService
         _count++;
     }
 
-    public int First()
+    public T First()
     {
         return (_count == 0) ? throw new InvalidOperationException("Print is empty"): _values[0];
     }
