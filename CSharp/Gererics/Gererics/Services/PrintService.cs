@@ -1,6 +1,6 @@
 ﻿using System.Resources;
 
-namespace Gererics;
+namespace Gererics.Services;
 
 public class PrintService<T>
 {
@@ -18,7 +18,7 @@ public class PrintService<T>
 
     public T First()
     {
-        return (_count == 0) ? throw new InvalidOperationException("Print is empty"): _values[0];
+        return _count == 0 ? throw new InvalidOperationException("Print is empty"): _values[0];
     }
 
     public void Print()
