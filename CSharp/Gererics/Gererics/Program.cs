@@ -1,5 +1,6 @@
 ﻿using Gererics.Entities;
 using Gererics.Services;
+using System.Globalization;
 
 namespace Gererics
 {
@@ -37,7 +38,7 @@ namespace Gererics
             {
                 string[] vet = Console.ReadLine().Split(',');
                 string name = vet[0];
-                double price = double.Parse(vet[1], System.Globalization.CultureInfo.InvariantCulture);
+                double price = double.Parse(vet[1], CultureInfo.InvariantCulture);
 
                 list.Add(new Product(name, price));
             }
@@ -45,8 +46,7 @@ namespace Gererics
             CalculationService calculationService = new CalculationService();
             Product max = calculationService.Max(list);
 
-            Console.WriteLine("Max : ");
-            Console.WriteLine(max);
+            Console.Write($"Max : {max}");
         }
     }
 }
