@@ -40,28 +40,50 @@ namespace HashSetSortedSet
             //diff.ExceptWith(b);
             //PrintCollection(diff);
 
-            HashSet<Product> a = new HashSet<Product>()
-            {
-                new Product("Les Paul", 1000.00),
-                new Product("Vox ac30", 1500.00),
-                new Product("Valeton gp-200", 500.00)
-            };
+            //HashSet<Product> a = new HashSet<Product>()
+            //{
+            //    new Product("Les Paul", 1000.00),
+            //    new Product("Vox ac30", 1500.00),
+            //    new Product("Valeton gp-200", 500.00)
+            //};
 
-            HashSet<Point> b = new HashSet<Point>()
-            {
-                new Point(0, 0),
-                new Point(1, 1),
-                new Point(2, 2)
-            };
+            //HashSet<Point> b = new HashSet<Point>()
+            //{
+            //    new Point(0, 0),
+            //    new Point(1, 1),
+            //    new Point(2, 2)
+            //};
 
-            Product p = new Product("Les Paul", 1000.00);
-            Point point = new Point(0, 0);
+            //Product p = new Product("Les Paul", 1000.00);
+            //Point point = new Point(0, 0);
 
             // se a classe não tiver o método GetHashCode e Equals implementados, o HashSet não conseguirá identificar se o elemento já existe ou não
             // então ele irá considerar que o elemento é diferente, mesmo que os valores sejam iguais
             // vendo ele apenas por referencia e não por valor
-            Console.WriteLine(a.Contains(p));
-            Console.WriteLine(b.Contains(point));
+            //Console.WriteLine(a.Contains(p));
+            //Console.WriteLine(b.Contains(point));
+            HashSet<LogRecord> set = new HashSet<LogRecord> ();
+
+            Console.WriteLine("Enter file full path: ");
+            string path = Console.ReadLine();
+
+            try
+            {
+                using (StreamReader sr = File.OpenText(path))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string[] line = sr.ReadLine().Split(' ');
+                        string name = line[0];
+                        DateTime instant = DateTime.Parse(line[1]);
+                        set.Add(new LogRecord { UserName = name, Instant = instant });
+                    }
+                    Console.WriteLine($"Total users : {set.Count}");
+                }
+            } catch (IOException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         static void PrintCollection<T>(IEnumerable<T> collections)
