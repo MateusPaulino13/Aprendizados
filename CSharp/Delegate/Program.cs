@@ -34,23 +34,47 @@ namespace Delegate
             //op(a, b);
 
 
-            //Predicate = Representa um método que recebe um objeto do tipo T e retorna um valor booleano
+            //PREDICATE = Representa um método que recebe um objeto do tipo T e retorna um valor booleano
+            //List<Product> products = new List<Product>();
+
+            //products.Add(new Product("Stratocaster", 1740.00));
+            //products.Add(new Product("Vox ac30", 4500.00));
+            //products.Add(new Product("Valeton Gp-200", 1500.00));
+
+            //products.RemoveAll(p => p.Price > 1500.00); // pode ser uma expressão lambda
+            //products.RemoveAll(ProductTest); 
+
+            //foreach(var prod in products)
+            //    Console.WriteLine(prod);
+
+
+
+            //ACTION = Representa um método void que recebe zero ou mais argumentos
             List<Product> products = new List<Product>();
 
             products.Add(new Product("Stratocaster", 1740.00));
             products.Add(new Product("Vox ac30", 4500.00));
             products.Add(new Product("Valeton Gp-200", 1500.00));
 
-            //products.RemoveAll(p => p.Price > 1500.00); // pode ser uma expressão lambda
-            products.RemoveAll(ProductTest); 
+            //Action<Product> act = UpdatePrice;
+            Action<Product> act = p => { p.Price += p.Price * 0.1; };
 
-            foreach(var prod in products)
-                Console.WriteLine(prod);
+            //products.ForEach(UpdatePrice);
+            //products.ForEach(p => { p.Price += p.Price * 0.1; });
+            products.ForEach(act);
+
+            foreach(Product p in products)
+                Console.WriteLine(p);
         }
 
-        public static bool ProductTest(Product p)
+        static void UpdatePrice(Product prod)
         {
-            return p.Price > 1500.00;
+            prod.Price += prod.Price * 0.1;
         }
+
+        //public static bool ProductTest(Product p)
+        //{
+        //    return p.Price > 1500.00;
+        //}
     }
 }
