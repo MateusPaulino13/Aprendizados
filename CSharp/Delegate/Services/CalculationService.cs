@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +22,18 @@ namespace Delegate.Services
         public static double Sqaure(double x, double y)
         {
             return x * x;
+        }
+
+        public static void ShowMax(double x, double y)
+        {
+            double max = Max(x, y);
+            Console.WriteLine(max);
+        }
+        
+        public static void ShowSum(double x, double y)
+        {
+            double sum = Sum(x, y);
+            Console.WriteLine(sum);
         }
     }
 }
