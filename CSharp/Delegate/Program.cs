@@ -1,4 +1,5 @@
-﻿using Delegate.Services;
+﻿using Delegate.Entities;
+using Delegate.Services;
 
 namespace Delegate
 {
@@ -26,11 +27,30 @@ namespace Delegate
             // para adicionar uma referencia, pode-se usar o operador +=
             //A chamada Invoke(ou sintaxe resuzida) executa todos os métodos na ordem em que foram adicionados
             // Seu uso faz sentido para métodos VOID
-            BinaryNumericOperation op = CalculationService.ShowSum;
-            op += CalculationService.ShowMax;
+            //BinaryNumericOperation op = CalculationService.ShowSum;
+            //op += CalculationService.ShowMax;
 
-            op.Invoke(a, b);
-            op(a, b);
+            //op.Invoke(a, b);
+            //op(a, b);
+
+
+            //Predicate = Representa um método que recebe um objeto do tipo T e retorna um valor booleano
+            List<Product> products = new List<Product>();
+
+            products.Add(new Product("Stratocaster", 1740.00));
+            products.Add(new Product("Vox ac30", 4500.00));
+            products.Add(new Product("Valeton Gp-200", 1500.00));
+
+            //products.RemoveAll(p => p.Price > 1500.00); // pode ser uma expressão lambda
+            products.RemoveAll(ProductTest); 
+
+            foreach(var prod in products)
+                Console.WriteLine(prod);
+        }
+
+        public static bool ProductTest(Product p)
+        {
+            return p.Price > 1500.00;
         }
     }
 }
