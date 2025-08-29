@@ -50,27 +50,49 @@ namespace Delegate
 
 
             //ACTION = Representa um método void que recebe zero ou mais argumentos
+            //List<Product> products = new List<Product>();
+
+            //products.Add(new Product("Stratocaster", 1740.00));
+            //products.Add(new Product("Vox ac30", 4500.00));
+            //products.Add(new Product("Valeton Gp-200", 1500.00));
+
+            //Action<Product> act = UpdatePrice;
+            //Action<Product> act = p => { p.Price += p.Price * 0.1; };
+
+            //products.ForEach(UpdatePrice);
+            //products.ForEach(p => { p.Price += p.Price * 0.1; });
+            //products.ForEach(act);
+
+            //foreach(Product p in products)
+            //    Console.WriteLine(p);
+
+
+            //FUNC = Representa um método que recebe zero ou mais argumentos, e retorna um valor
+            // a diferença entre o Action e o Func, é que o Func retorna algum valor
             List<Product> products = new List<Product>();
 
             products.Add(new Product("Stratocaster", 1740.00));
             products.Add(new Product("Vox ac30", 4500.00));
             products.Add(new Product("Valeton Gp-200", 1500.00));
 
-            //Action<Product> act = UpdatePrice;
-            Action<Product> act = p => { p.Price += p.Price * 0.1; };
+            //Func<Product, string> func = NameUpper;
 
-            //products.ForEach(UpdatePrice);
-            //products.ForEach(p => { p.Price += p.Price * 0.1; });
-            products.ForEach(act);
+            //List<string> result = products.Select(func).ToList();
+            List<string> result = products.Select(p => p.Name.ToUpper()).ToList();
 
-            foreach(Product p in products)
+            foreach (var p in result)
                 Console.WriteLine(p);
         }
 
-        static void UpdatePrice(Product prod)
-        {
-            prod.Price += prod.Price * 0.1;
-        }
+        //static string NameUpper(Product p)
+        //{
+        //    return p.Name.ToUpper();
+        //}
+
+        //static void UpdatePrice(Product prod)
+        //{
+        //    prod.Price += prod.Price * 0.1;
+        //}
 
         //public static bool ProductTest(Product p)
         //{
