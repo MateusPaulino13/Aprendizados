@@ -15,13 +15,27 @@ namespace Comparison
 
             // ordena minha lista
             // mas apenas se minha lista implementa a interface IComparable<>
-            produtcs.Sort();
+            //produtcs.Sort();
+
+            //gardando a referencia da função
+            //Comparison<Product> comp = Compareproduts;
+
+            //função anonima para não precisar criar uma função dedicada para isso
+            //Comparison<Product> comp = (p1, p2) => p1.Name.ToUpper().CompareTo(p2.Name.ToUpper());
+
+            //produtcs.Sort(comp);
+
+            //ou msm se preferir, pode colocar a propria expressão lambda direto no sort()
+            produtcs.Sort((p1, p2) => p1.Name.ToUpper().CompareTo(p2.Name.ToUpper()));
 
             foreach (var product in produtcs)
-            {
                 Console.WriteLine(product);
-            }
 
         }
+
+        //static int Compareproduts(Product prod1, Product prod2)
+        //{
+        //    return prod1.Name.ToUpper().CompareTo(prod2.Name.ToUpper());
+        //}
     }
 }
