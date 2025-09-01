@@ -8,11 +8,11 @@ namespace Linq.Entities
 {
     class Category
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public int Tier { get; set; }
 
-        public Category(Guid id, string name, int tier)
+        public Category(int id, string name, int tier)
         {
             Id = id;
             Name = name;
